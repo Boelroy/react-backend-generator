@@ -2,24 +2,24 @@
 
 import gulp from 'gulp';
 import path from 'path';
-//import webpack from 'webpack-stream';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 
 let config = {
   entry: {
-    app:['./app/scripts/index.js']
+    app:['./app/scripts/index.js', 'webpack/hot/only-dev-server']
   },
   output: {
     path: path.resolve(__dirname, 'build/scripts'),
-    filename: 'main.js'
+    filename: 'main.js',
   },
   devtool: '#inline-source-map',
   module: {
     loaders: [
       {
         test: /\.js?$/,
-        loaders: ['babel?presets[]=es2015']
+        loaders: ['react-hot', 'babel?'+ JSON.stringify({presets: ['react', 'es2015', 'stage-0']})],
+        exclude: /node_modules/
       },
       {
         test: /\.scss?$/,
@@ -34,13 +34,14 @@ let config = {
 
 
 gulp.task('dev', function() {
-  config.entry.app.unshift('webpack-dev-server/client?http://localhost:8080/', "webpack/hot/dev-server");
+  config.entry.app.unshift('webpack-dev-server/client?http://localhost:8080/');
   var compiler = webpack(config);
   var server = new WebpackDevServer(compiler, {
     hot: true,
     inline: true,
     contentBase: './app/',
-    publicPath: '/scripts/'
+    publicPath: '/',
+    headers: { 'Access-Control-Allow-Origin': '*' }
   });
   server.listen(8080);
 });

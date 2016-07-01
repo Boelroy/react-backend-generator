@@ -1,6 +1,8 @@
-@import '../../utils/style/variables';
+@import '../../utils/style/basic';
 
 .nav {
   background-color: $primary-color;
   height: 60px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  color: $text-white;
 }

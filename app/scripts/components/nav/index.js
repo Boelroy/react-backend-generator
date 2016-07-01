@@ -7,7 +7,7 @@ class Nav extends React.Component {
         this.displayName = 'Nav';
     }
     render() {
-        return <div className="nav">Nav</div>;
+        return <div className="nav"></div>;
     }
 }
 
