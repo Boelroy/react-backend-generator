@@ -1,2 +1,4 @@
-export const SIDEBAR_OPEN = 'SIDEBAR_TOGGLE';
+export const SIDEBAR_TOGGLE = 'SIDEBAR_TOGGLE';
 export const SIDEBAR_MENU_SHOW = 'SIDEBAR_MENU_TOGGLE';
+
+export const CHANGE_PATH = 'CHANGE_PATH';

@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import navigator from './navigator';
+import sidebar from './sidebar';
 
 let rootReducer =combineReducers({
-  navigator
+  navigator,
+  sidebar
 });
 
 export default rootReducer;

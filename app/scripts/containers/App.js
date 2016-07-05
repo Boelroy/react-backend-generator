@@ -8,15 +8,17 @@ import SideBar from '../components/sidebar';
 
 import ModuleContainer from '../containers/ModuleContainer'
 
+import {sidebar} from '../actions/sidebar'
+
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
-  path: PropTypes.array
+  path: PropTypes.array,
+  show: PropTypes.bool
 };
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.displayName = 'App';
   }
 
   componentDidMount(){
@@ -31,26 +33,34 @@ class App extends React.Component {
       case 'modules':
         return <ModuleContainer />
       default:
-        return null;
+        return <div>App</div>;
     }
   }
 
   render() {
+    const { dispatch, show } = this.props;
     return (<div>
-      <Nav />
-      <SideBar sidebars={[{title: 'item1'}]}/>
-      <div>App</div>
+      <Nav onMenuClick={ e => dispatch(sidebar()) }/>
+
+      <SideBar ref="sidebar"
+        onMenuClick={ e => dispatch(sidebar()) }
+        sidebars={[{title: 'item1'}]}
+        show={show}
+      />
+      <div className="g-content">
+      { this.renderContent() }
+      </div>
     </div>)
   }
 }
 
 function mapStateToProps(state) {
   console.log(state);
-  const {navigator} = state;
+  const {navigator, sidebar} = state;
   const {path} = navigator.route;
-
   return {
-    path
+    path,
+    show: sidebar.opened
   }
 }
 export default connect(mapStateToProps)(App);

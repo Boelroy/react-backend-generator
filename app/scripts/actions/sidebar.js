@@ -2,7 +2,7 @@
 
 import * as types from '../constants/ActionTypes';
 
-export function toggleSidebar() {
+export function sidebar() {
   return {
     type: types.SIDEBAR_TOGGLE
   };

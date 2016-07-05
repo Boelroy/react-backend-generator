@@ -7,6 +7,11 @@
   background-color: #fff;
   height: 100%;
   box-shadow: 0 0 10px rgba(51, 51, 51, 0.38);
+  transform: translateX(-300px);
+
+  &.toggle {
+    transform: translateX(0);
+  }
 }
 
 .g-sidebar-list {

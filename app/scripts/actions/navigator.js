@@ -3,18 +3,20 @@
 import * as types from '../constants/ActionTypes';
 import {constructUrl, parseUrl} from '../utils/RouterUtils';
 
-export function changePath(router) {
+export function changePath(route) {
   return {
     type: types.CHANGE_PATH,
-    router
+    route
   };
 }
+
 function pushState(route) {
   history.pushState({route}, '', `#/${constructUrl(route)}`);
 }
+
 export function navigateTo(route, shouldPushState = true) {
   return (dispatch, getState) => {
-    const {navigator} = getState();
+    const { navigator } = getState();
     if (constructUrl(route) === constructUrl(navigator.route)) {
       return null;
     }
@@ -32,6 +34,7 @@ export function navigateBack(e) {
     if (e.state) {
       return dispatch(navigateTo(e.state.route, false));
     }
+    return null;
   };
 }
 
