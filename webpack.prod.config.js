@@ -24,7 +24,7 @@ MapJsonPlugin.prototype.apply = function(compiler) {
 
 module.exports = {
   entry: {
-    main: './app/scripts/index.jsx'
+    main: './app/scripts/index.js'
   },
   output: {
     path: 'build',
@@ -38,8 +38,8 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.less$/,
-        loaders: ['style','css','less']
+        test: /\.scss$/,
+        loaders: ['style','css','sass']
       }
     ]
   },

@@ -1,11 +1,10 @@
 var path = require('path');
-var webpack = require('webpack');
 
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    app:['./app/scripts/index.jsx', 'webpack/hot/only-dev-server']
+    app:['./app/scripts/index.js', 'webpack/hot/only-dev-server']
   },
   output: {
     path: path.resolve(__dirname, 'build/scripts'),
@@ -21,8 +20,8 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.less?$/,
-        loaders: ['style','css','less']
+        test: /\.scss?$/,
+        loaders: ['style','css','sass']
       },
       {
         test: /\.(jpe?g|png|gif|svg|eot|woff|ttf|svg|woff2)$/, loader: 'file?name=[name].[ext]'
